@@ -8,7 +8,7 @@
   <div class="card-body pb-1">
     <!-- Display product name and price -->
     <div class="d-flex justify-content-between mb-3">
-      <h5 class="mb-0">{{ product.productName }}</h5>
+      <h5 class="mb-0 product-name">{{ product.productName }}</h5>
       <h5 class="text-dark mb-0">${{ product.price }}</h5>
     </div>
   </div>
@@ -23,4 +23,20 @@
       <i [class]="product.rating > 4 ? 'fa fa-star' : 'fa fa-star-o'"></i>
     </div>
   </div>
+  <!-- Display 'Out of Stock' button -->
+  <button
+    *ngIf="product.availableQty === 0"
+    type="button"
+    class="btn btn-secondary"
+  >
+    Out of Stock
+  </button>
+  <!-- Display 'Add to Cart' button -->
+  <button
+    *ngIf="product.availableQty > 0"
+    type="button"
+    class="btn btn-success"
+  >
+    Add to Cart
+  </button>
 </div>
