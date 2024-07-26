@@ -192,10 +192,20 @@ export class HomeComponent {
     },
   ];
 
+  /**
+   *　状態管理用の変数
+   */
+  // フィルタリングされた家電製品のリスト
+  public filteredProducts: Product[] = [];
+  // 選択されたカテゴリ
+  public selectedCategory: string = '';
+
   // コンストラクタ
   constructor() {
     // 新製品のマークを付ける
     this.productList = this.markNewProducts(this.productList);
+    // フィルタリングされた家電製品のリストを初期化
+    this.filteredProducts = this.productList;
   }
 
   // カテゴリリストのインデックスを返す：不要なDOM操作が減り、アプリケーションのパフォーマンスが向上
@@ -250,4 +260,28 @@ export class HomeComponent {
   //     return product;
   //   });
   // }
+
+  /**
+   * カテゴリを選択したときの処理
+   * 選択されたカテゴリと一致する製品のみを抽出する処理
+   *
+   * @param {string} category - 選択されたカテゴリ
+   * @return {void} - なし
+   */
+  public filterCategory(category: string): void {
+    // 選択されたカテゴリがすでに選択されている場合、選択を解除
+    if (this.selectedCategory === category) {
+      this.selectedCategory = '';
+      this.filteredProducts = this.productList;
+    } else {
+      // 選択されたカテゴリが異なる場合
+      // 選択されたカテゴリを保持
+      this.selectedCategory = category;
+
+      // 選択されたカテゴリに一致する製品のみを抽出
+      this.filteredProducts = this.productList.filter(
+        (product) => product.category === category
+      );
+    }
+  }
 }
