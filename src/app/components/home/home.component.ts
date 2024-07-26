@@ -192,8 +192,62 @@ export class HomeComponent {
     },
   ];
 
+  // コンストラクタ
+  constructor() {
+    // 新製品のマークを付ける
+    this.productList = this.markNewProducts(this.productList);
+  }
+
   // カテゴリリストのインデックスを返す：不要なDOM操作が減り、アプリケーションのパフォーマンスが向上
   public trackByIndex(index: number, item: any): number {
     return index;
   }
+
+  /**
+   * 新製品のマークを付ける関数
+   * 30日以内に発売された製品を新製品としてマークする
+   *
+   * @param {Product[]} productList - マークを付ける製品のリスト
+   * @returns {Product[]} - 新製品としてマークされた製品のリスト
+   */
+  private markNewProducts(productList: Product[]): Product[] {
+    // 基準日を取得
+    const releaseDate = new Date('2024-04-01');
+    // 3ヶ月前の日付を取得
+    const threeMonthsAgo = new Date(releaseDate);
+    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+
+    // 製品リストをループして、新製品かどうかを判定
+    return productList.map((product) => {
+      // 製品の発売日を取得:製品のリリース日をDateオブジェクトに変換
+      const releaseDate = new Date(product.releaseDate);
+      // 製品のリリース日が3ヶ月以内であれば、新製品としてマーク
+      product.isNew = releaseDate > threeMonthsAgo;
+
+      return product;
+    });
+  }
+
+  /**
+   * 別回答
+   */
+  // private markNewProducts(productList: Product[]): Product[] {
+  //   // 製品リストをループして、新製品かどうかを判定
+  //   return productList.map((product) => {
+  //     // 今日の日付を取得
+  //     const today = new Date();
+  //     // 製品の発売日を取得
+  //     const releaseDate = new Date(product.releaseDate);
+
+  //     // 今日の日付と発売日の差をミリ秒で計算
+  //     const timeDiff = Math.abs(today.getTime() - releaseDate.getTime());
+  //     // ミリ秒の差を日数に変換
+  //     const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+  //     // 発売日から30日以内であれば、新製品としてマーク
+  //     product.isNew = diffDays <= 30;
+
+  //     return product;
+  //   });
+  // }
 }
