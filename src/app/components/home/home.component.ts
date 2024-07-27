@@ -193,7 +193,7 @@ export class HomeComponent {
   ];
 
   /**
-   *　状態管理用の変数
+   * 状態管理用の変数
    */
   // フィルタリングされた家電製品のリスト
   public filteredProducts: Product[] = [];
