@@ -32,6 +32,17 @@
         <div class="col-3">
           <p class="text-left mb-0">{{ filteredProducts.length }}</p>
         </div>
+        <!-- Sorting options -->
+        <div class="d-flex align-items-center">
+          <select
+            id="sortOptions"
+            class="form-select"
+            (change)="sortProducts($event)"
+          >
+            <option value="default">Sort by: Product Id</option>
+            <option value="priceAsc">Sort by: Price: Low to High</option>
+          </select>
+        </div>
       </div>
 
       <div class="row">

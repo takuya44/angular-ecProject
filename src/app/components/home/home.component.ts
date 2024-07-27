@@ -284,4 +284,31 @@ export class HomeComponent {
       );
     }
   }
+
+  /**
+   * 製品を並び替える関数
+   * 選択されたソートオプションに基づいて製品を並び替える
+   *
+   * @param {Event} event - イベントオブジェクト
+   * @returns {void} - なし
+   * */
+  public sortProducts(event: Event): void {
+    // イベントのターゲット要素を取得
+    const target = event.target as HTMLSelectElement | null;
+    if (target) {
+      // 選択されたソートオプションを取得
+      const sortOption = target.value;
+
+      // 選択されたソートオプションに基づいて製品を並び替え
+      switch (sortOption) {
+        case 'priceAsc':
+          // mutableなfilteredProductsを直接変更することで、テンプレートに反映
+          this.filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        default:
+          this.filteredProducts.sort((a, b) => a.productId - b.productId);
+          break;
+      }
+    }
+  }
 }
