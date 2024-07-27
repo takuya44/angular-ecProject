@@ -8,18 +8,18 @@
       >
         <button
           *ngFor="
-            let item of categoryList;
+            let category of categoryList;
             let i = index;
             trackBy: trackByIndex
           "
           [class]="
-            selectedCategory === item
+            selectedCategory === category
               ? 'btn btn-primary mx-2'
               : 'btn btn-outline-primary mx-2'
           "
-          (click)="filterCategory(item)"
+          (click)="filterCategory(category)"
         >
-          {{ item }}
+          {{ category }}
         </button>
       </div>
 
