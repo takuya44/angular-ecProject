@@ -1,4 +1,4 @@
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Input, inject, Inject } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +16,7 @@ export class ProductCardComponent {
   @Input() product!: Product;
 
   // ProductServiceをDI
-  private productService = Inject(ProductService);
+  private productService = inject(ProductService);
 
   // カートに商品を追加する
   public addToCart(addedProduct: Product): void {
