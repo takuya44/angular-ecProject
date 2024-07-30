@@ -58,4 +58,9 @@ export class AppComponent {
   public getCartTotal(): number {
     return this.cartItems.length;
   }
+
+  // カートの合計金額を返す
+  public getCartTotalPrice(): number {
+    return this.cartItems.reduce((acc, item) => acc + item.price, 0);
+  }
 }
