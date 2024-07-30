@@ -48,4 +48,9 @@ export class AppComponent {
   public trackByIndex(index: number, item: Product): number {
     return index;
   }
+
+  // カートから商品を削除
+  public removeProduct(index: number): void {
+    this.cartItems.splice(index, 1);
+  }
 }
