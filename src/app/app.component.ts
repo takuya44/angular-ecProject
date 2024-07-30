@@ -53,4 +53,9 @@ export class AppComponent {
   public removeProduct(index: number): void {
     this.cartItems.splice(index, 1);
   }
+
+  // カートの合計数量を返す
+  public getCartTotal(): number {
+    return this.cartItems.length;
+  }
 }
